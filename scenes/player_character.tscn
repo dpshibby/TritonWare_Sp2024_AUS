@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2x2cm3y3wq2h"]
+
+[ext_resource type="Texture2D" uid="uid://bafq84aluf0u1" path="res://assets/amogus_16.png" id="1_mv87d"]
+[ext_resource type="Script" path="res://src/player_character.gd" id="1_v0y3k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ul4x7"]
+size = Vector2(8, 16)
+
+[node name="Player_Character" type="CharacterBody2D"]
+position = Vector2(146, 112)
+script = ExtResource("1_v0y3k")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_mv87d")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4, 8)
+shape = SubResource("RectangleShape2D_ul4x7")

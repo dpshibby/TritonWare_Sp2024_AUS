@@ -1,0 +1,95 @@
+[gd_scene load_steps=9 format=3 uid="uid://dnsdk6aqxv2uf"]
+
+[ext_resource type="PackedScene" uid="uid://c2x2cm3y3wq2h" path="res://scenes/player_character.tscn" id="1_m7i3k"]
+[ext_resource type="Texture2D" uid="uid://tjqfclx0rpbk" path="res://assets/Player_Sheet.png" id="2_7k7gt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_olxsp"]
+size = Vector2(240, 10)
+
+[sub_resource type="QuadMesh" id="QuadMesh_5ryj0"]
+size = Vector2(240, 10)
+
+[sub_resource type="Animation" id="Animation_8jtwr"]
+resource_name = "Walk"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [7, 8, 9, 10]
+}
+
+[sub_resource type="Animation" id="Animation_fw7fa"]
+resource_name = "Idle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_ciw4w"]
+resource_name = "Jump"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [14, 15, 16, 17, 18, 19, 20]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qlumi"]
+_data = {
+"Idle": SubResource("Animation_fw7fa"),
+"Jump": SubResource("Animation_ciw4w"),
+"Walk": SubResource("Animation_8jtwr")
+}
+
+[node name="World" type="Node2D"]
+
+[node name="Player_Character" parent="." instance=ExtResource("1_m7i3k")]
+position = Vector2(116, 111)
+
+[node name="Ground" type="StaticBody2D" parent="."]
+position = Vector2(120, 150)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+shape = SubResource("RectangleShape2D_olxsp")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Ground"]
+modulate = Color(0.486275, 0.337255, 0.196078, 1)
+mesh = SubResource("QuadMesh_5ryj0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_7k7gt")
+hframes = 7
+vframes = 3
+frame = 14
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_qlumi")
+}
