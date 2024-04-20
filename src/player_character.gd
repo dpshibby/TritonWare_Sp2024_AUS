@@ -10,8 +10,10 @@ func _physics_process(delta):
 	var h_dir = 0
 	if Input.is_action_pressed("left_arrow"):
 		h_dir -= 1
+		scale.x = scale.y * 1
 	if Input.is_action_pressed("right_arrow"):
 		h_dir += 1
+		scale.x = scale.y * -1
 
 	if !is_on_floor():
 		velocity.y += gravity
