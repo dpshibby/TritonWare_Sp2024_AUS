@@ -62,7 +62,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ul4x7"]
-size = Vector2(11, 16)
+size = Vector2(12, 15)
 
 [node name="Player_Character" type="CharacterBody2D"]
 script = ExtResource("1_v0y3k")
@@ -70,9 +70,9 @@ script = ExtResource("1_v0y3k")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("2_vrqgq")
+centered = false
 hframes = 7
 vframes = 3
-frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
 libraries = {
@@ -80,5 +80,5 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 2)
+position = Vector2(7, 13.5)
 shape = SubResource("RectangleShape2D_ul4x7")
